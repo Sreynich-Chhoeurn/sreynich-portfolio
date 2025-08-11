@@ -18,6 +18,12 @@ const Resume = () => {
     threshold: 0.1,
   });
 
+  const certificates: string[] = [
+    "Certified Web Developer",
+    "React Specialist",
+    "TypeScript Expert",
+  ];
+
   const handleDownloadCV = () => {
     const link = document.createElement('a');
     link.href = 'https://www.canva.com/design/DAGutfpvCOI/L3f3regeQmlYp2qN0wRdYQ/edit?utm_content=DAGutfpvCOI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton';
@@ -25,7 +31,13 @@ const Resume = () => {
     link.click();
   };
 
-  const education = [
+  const education: {
+    degree: string;
+    school: string;
+    period: string;
+    description: string;
+    gpa: string;
+  }[] = [
     {
       degree: 'Associate degree',
       school: 'Passerelles Numériques Cambodia',
@@ -43,7 +55,14 @@ const Resume = () => {
     },
   ];
 
-  const experience = [
+  const experience: {
+    title: string;
+    role: string;
+    technology: string;
+    period?: string;
+    location: string;
+    achievements: string[];
+  }[] = [
     {
       title: 'Virtual Company 2 (VC2) - QR Code Menu App',
       role: 'Flutter Mobile Developer',
@@ -75,7 +94,6 @@ const Resume = () => {
       title: 'Weather App',
       role: 'Front-End Developer',
       technology: 'JavaScript, HTML/CSS, Weather API',
-      // period: '12 Jan 2025 - 26 Jan 2025',
       location: 'Passerelles Numériques Cambodia',
       achievements: [
         'Designed and built a responsive user interface to show live weather data using an API.',
@@ -95,28 +113,20 @@ const Resume = () => {
         'Used GitHub for version control and smooth team collaboration',
       ],
     },
-
     {
       title: 'Portfolio Website',
       role: 'Vibe Coder | Personal Project',
       technology: 'ChatGPT, Bolt',
-      // period: '12 Jan 2025 - 26 Jan 2025',
       location: 'Passerelles Numériques Cambodia',
       achievements: [
         'Enhanced content clarity and engagement with ChatGPT.',
         'Developed and managed content using Bolt',
       ],
     },
-
   ];
 
-  const certificates = [
-    // Add certificates here as strings if needed
-  ];
-
-  const achievements = [
+  const achievements: string[] = [
     'Associate Degree in Web Development at Passerelles Numériques Cambodia',
-    // Add more achievements if needed
   ];
 
   return (
@@ -272,11 +282,15 @@ const Resume = () => {
                       <h5 className="text-xl font-bold">{job.title}</h5>
                       <p className="text-primary-600 font-semibold">{job.role}</p>
                       <div className="flex flex-wrap items-center gap-2 text-gray-600 dark:text-gray-300 mb-2">
-                        <span className="flex items-center">
-                          <Calendar size={14} className="mr-1" />
-                          {job.period}
-                        </span>
-                        <span>•</span>
+                        {job.period && (
+                          <>
+                            <span className="flex items-center">
+                              <Calendar size={14} className="mr-1" />
+                              {job.period}
+                            </span>
+                            <span>•</span>
+                          </>
+                        )}
                         <span className="flex items-center">
                           <MapPin size={14} className="mr-1" />
                           {job.location}
