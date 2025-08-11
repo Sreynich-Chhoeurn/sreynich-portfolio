@@ -2,8 +2,8 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
-import AnimatedText from '../components/AnimatedText';
-import FloatingIcons from '../components/FloatingIcons';
+import AnimatedText from '../components/AnimatedText.js';
+import FloatingIcons from '../components/FloatingIcons.js';
 const Home = () => {
     const handleDownloadCV = () => {
         // Create a dummy CV download

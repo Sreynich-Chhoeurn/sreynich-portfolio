@@ -1,6 +1,4 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Home from './sections/Home';
 import About from './sections/About';
@@ -13,18 +11,40 @@ import CustomCursor from './components/CustomCursor';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 import { ThemeProvider } from './context/ThemeContext';
+
 function App() {
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
-    if (loading) {
-        return _jsx(Preloader, {});
-    }
-    return (_jsx(ThemeProvider, { children: _jsxs("div", { className: "min-h-screen bg-gradient-to-br from-white via-purple-50 to-mint-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-800 transition-colors duration-300", children: [_jsx(CustomCursor, {}), _jsx(ScrollProgress, {}), _jsx(Navbar, {}), _jsxs("main", { children: [_jsx(Home, {}), _jsx(About, {}), _jsx(Skills, {}), _jsx(Projects, {}), _jsx(Resume, {}), _jsx(Contact, {})] }), _jsx(BackToTop, {})] }) }));
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
+
+  return (
+    <ThemeProvider>
+      <div className="min-h-screen bg-gradient-to-br from-white via-purple-50 to-mint-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-800 transition-colors duration-300">
+        <CustomCursor />
+        <ScrollProgress />
+        <Navbar />
+        <main>
+          <Home />
+          <About />
+          <Skills />
+          <Projects />
+          <Resume />
+          <Contact />
+        </main>
+        <BackToTop />
+      </div>
+    </ThemeProvider>
+  );
 }
+
 export default App;
-//# sourceMappingURL=App.js.map
